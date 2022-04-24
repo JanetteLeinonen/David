@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+    <!-- AWP_In_Variable Name='"WebInterfaceFileHandler"' -->
+    <!-- AWP_Start_Array Name='"WebInterfaceFileHandler".new' --> <!-- AWP_End_Array -->
+    <!-- AWP_Start_Array Name='"WebInterfaceFileHandler".running' --> <!-- AWP_End_Array -->
+
+    <head>
+        <title>UserFiles Browser</title>
+        <script type="text/javascript" src="jsLib/jquery1.11.2.min.js"></script>
+    </head>
+    
+    <body onload="GetFileNames()">
+
+        <h3>UserFiles Browser</h3>
+        <p>Offset: :="WebInterfaceFileHandler".offset:</p>
+
+
+        <script type="text/javascript">
+            function GetFileNames() {
+                var ip = location.hostname;
+                jQuery.get('http://' + ip + '/UserFiles', {'Action': 'LIST'}, function (data) {
+                    GetUserFileList(data);
+                });
+            }
+
+            function GetUserFileList(data) {
+                /******************************************************************************************************************
+                 * 2021-01-30 FF @ Afry: Added functionality to separate files with filname starting with 'RUNNING_' from the rest
+                 ******************************************************************************************************************/
+                var index = 1;
+                var offset = :="WebInterfaceFileHandler".offset:;
+                var endIndex = offset + :="WebInterfaceFileHandler".numberOfFilesToRead:;
+                var form = document.createElement("form");
+                form.action = "";
+                form.method = "post";
+                form.target = "";
+                var input = [];
+                var i;
+                var res = data.split(/\r\n/);
+                var resLength = res.length;
+                var elements = 0;
+                var success = 1;
+                var numOfRunningFiles = 0;  //2021-01-30 FF @ Afry Added
+                var numOfNewFiles = 0;      //2021-01-30 FF @ Afry Added
+                
+                for (i=0; i < resLength; i++) {
+                    if (res[i] !== "") {
+                        elements ++;
+                    }
+                }
+                
+                for (i = offset; i < endIndex; i++) {
+                    if (i > resLength) {
+                        break;
+                    }
+                    if (res[i] === "") {
+                        resLength = i;
+                        break;
+                    }
+
+                    var datas = res[i].split("|");
+                    var name = decodeURIComponent(datas[0]);
+                    if (datas.length === 3) {
+                        //alert(name + ' - ' + name.substring(0,7));
+                        input[index] = "input_" + index;
+                        input[index] = document.createElement("input");
+                        input[index].type = "hidden";
+
+                        //Separate 'RUNNING_' files from new files. //2021-01-30 FF @ Afry Added
+                        if (name.substring(0,8) === "RUNNING_") {
+                            numOfRunningFiles++;
+                            input[index].name = '"WebInterfaceFileHandler".running[' + numOfRunningFiles + ']';
+                        }
+                        else {
+                            numOfNewFiles++;
+                            input[index].name = '"WebInterfaceFileHandler".new[' + numOfNewFiles + ']';
+                        }
+
+                        input[index].value = name;
+                        form.appendChild(input[index]);
+                        index++;
+                    }
+                };
+                
+                // Set total number of files on card
+                input[index] = "input_" + index;
+                input[index] = document.createElement("input");
+                input[index].type = "hidden";
+                input[index].name = '"WebInterfaceFileHandler".numberOfFilesOnCard'; 
+                input[index].value = elements;
+                form.appendChild(input[index]);
+                index ++;
+                
+                // Set total number of running files on card
+                //2021-01-30 FF @ Afry Added
+                input[index] = "input_" + index;
+                input[index] = document.createElement("input");
+                input[index].type = "hidden";
+                input[index].name = '"WebInterfaceFileHandler".numberOfRunningFilesOnCard'; 
+                input[index].value = numOfRunningFiles;
+                form.appendChild(input[index]);
+                index ++;
+
+                // Set total number of new files on card
+                //2021-01-30 FF @ Afry Added
+                input[index] = "input_" + index;
+                input[index] = document.createElement("input");
+                input[index].type = "hidden";
+                input[index].name = '"WebInterfaceFileHandler".numberOfNewFilesOnCard'; 
+                input[index].value = numOfNewFiles;
+                form.appendChild(input[index]);
+                index ++;
+                
+                // Set success tag
+                input[index] = "input_" + index;
+                input[index] = document.createElement("input");
+                input[index].type = "hidden";
+                input[index].name = '"WebInterfaceFileHandler".success'; 
+                input[index].value = success;
+                form.appendChild(input[index]);
+
+                document.body.appendChild(form);
+                //form.submit();
+
+                $.ajax({
+                    type: "POST",
+                    data: $('form').serialize(), // serializes the form's elements.
+                    success: function (data)
+                    {
+                        console.log(data); // show response from the php script.
+                    }
+                });
+
+                return false; // avoid to execute the actual submit of the form.
+
+            }
+        </script>
+
+    </body>
+</html>

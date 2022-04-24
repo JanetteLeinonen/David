@@ -1,0 +1,131 @@
+@font-face {
+    font-family: 'Campton';
+    src:  url('./Font/CamptonExtraLight.woff2') format('woff2'),
+          url('./Font/CamptonExtraLight.woff') format('woff');
+}
+:root {
+    --gray: #D0D0D0 ;
+    --white: #ffffff;
+    --red: #ff0000;
+    --header_font_size: 4vh;
+    --title1_font_size: 3.5vh;
+    --table_font_size: 3vh;
+    --larmtext_font_size: 3vh;
+}
+body {
+    background-color: #f0f0f2;              
+    background-image: url('./Images/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+    font-family: "Campton", "Verdana", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: 0EM;
+}
+
+.headerContainer {
+    max-height: 16vh;
+    width:100vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+.contentContainer {
+    clear:both;
+    max-height: 80vh;
+    width:100vw;
+}
+.footerContainer {
+    position: fixed;
+    bottom: 0;
+    max-height: 8vh;
+    width: 100vw;
+}
+.logo {
+    height:12vh;
+    float: left;
+}
+#header {
+    color:#b6b6b6;
+    width:100%;
+    padding-top: 4vh;
+    padding-bottom:4vh;
+}
+.title1 {
+    margin: 0;
+    padding: 0;
+    font-size: var(--header_font_size);
+    letter-spacing: 0.1em;
+    text-align:center;
+    color: black;
+    margin: 0px;
+}
+.title2 {
+    width:100%;
+    margin: 0;
+    padding: 0;
+    font-size: var(--title1_font_size);
+    text-align:center;
+    color: black;
+}
+#container {
+    width:100%;
+    color:#b6b6b6;
+    padding-bottom: 0.5vw;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-around;
+}
+#divCanvas{
+    background-color: var(--white);
+    text-align: center;
+    width:45vw;
+    padding: 1vmax;
+}
+#divData {
+    background-color: var(--white);
+    text-align: center;
+    width:45vw;
+    padding: 1vmax;
+    color: black;
+    overflow:hidden;
+}
+.tableHeader{
+    font-size: 2.5vh;
+}
+.table_row {
+    width:100%;
+    font-size: 2.5vh;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    padding-bottom:2vmax;
+    overflow:hidden;
+    font-size: 2.5h;
+  }
+td, th {
+    border: 1px solid #d0d0d0;
+    font-weight: bold;
+    text-align: left;
+    max-width: 8vw;
+    overflow:hidden;
+    font-size: 2.5vh;
+}
+tr:nth-child(even) {
+    background-color: rgba(241, 241, 241, 0.945)
+}
+.canvasImg{
+    position: absolute;
+    left: -9999px
+}
+#larmtext{
+    font-size: var(--larmtext_font_size);
+    text-align: center;
+    background-color: var(--red);
+    color: var(--white)
+}

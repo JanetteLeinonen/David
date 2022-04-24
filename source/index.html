@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Language" content="en" >
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title id="title">AFRY</title>
+    <img src="./Images/grayWithDots.png" class="canvasImg" id="GRAY_DOTS" width="50" height="50">
+    <img src="./Images/grayWithStripes.png" class="canvasImg" id="GRAY_STRIPES" width="50" height="50">
+    <img src="./Images/greenWithStripes.png" class="canvasImg" id="GREEN_STRIPES" width="50" height="50">
+    <img src="./Images/blueWithStripes.png" class="canvasImg" id="BLUE_STRIPES" width="50" height="50">
+    <img src="./Images/yellowWithStripes.png" class="canvasImg" id="YELLOW_STRIPES" width="50" height="50">
+    <img src="./Images/pinkWithStripes.png" class="canvasImg" id="PINK_STRIPES" width="50" height="50">
+    <img src="./Images/orangeWithStripes.png" class="canvasImg" id="ORANGE_STRIPES" width="50" height="50">
+    <img src="./Images/orangeWithDots.png" class="canvasImg" id="ORANGE_DOTS" width="50" height="50">
+    <img src="./Images/lightgreenWithDots.png" class="canvasImg" id="LIGHTGREEN_DOTS" width="50" height="50">
+    <img src="./Images/lightgreenWithStripes.png" class="canvasImg" id="LIGHTGREEN_STRIPES" width="50" height="50">
+    <img src="./Images/blueWithDots.png" class="canvasImg" id="BLUE_DOTS" width="50" height="50">
+    <img src="./Images/blackWithStripes.png" class="canvasImg" id="BLACK_STRIPES" width="50" height="50">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="./jsLib/jquery-3.2.1.min.js" ></script>
+    <script type="text/javascript" src="./jsLib/S7_framework.js" ></script>
+    <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+    <div class="headerContainer">
+        <img src="./Images/AFRY_Logotype_Horizontal.png" alt="afry_logo" class="logo">
+        <div id="header">
+            <h1 class="title1">FORMSKÄRNING ISOLERING</h1>
+        </div>
+    </div>
+    <div class="contentContainer" id="container">
+        <div id="divCanvas">
+            <h1 class="title2">Inlastning</h1>
+            <p><canvas id="myCanvas" width="600" height="550"> </canvas></p>
+        </div>
+        <div id="divData">
+            <h1 class="title2" id="headerAktuell">Aktuell order</h1>
+            <table>
+                <thead id="tableHeaderAktuell"></thead>
+                <tbody id="tableBodyAktuell"></tbody>
+            </table>
+            <p></p>
+            <h1 class="title2" id="headerKommande">Nästa order</h1>
+            <table>
+                <thead id="tableHeaderKommande"></thead>
+                <tbody id="tableBodyKommande"></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="footerContainer">
+        <p id="larmtext">:="Webserver DB".Larm.text:</p>
+        <div id="auto-refresh"></div>
+    </div>
+
+</body>
+</html>
