@@ -1,8 +1,11 @@
+"use strict";
 var URL = "data.json"
 
 var showAlarm;
 var larmtext;
 var dysa;
+var antalbatch;
+var gipsWidth;
 var numOfColumnsAktuell;
 var numOfColumnsNasta;
 
@@ -29,6 +32,9 @@ var nastaLength = [];
 
 var tableData;
 
+function redirect_to_sendfiles(){
+    location.href = "http://192.168.77.120/awp/SendFilesToPlc.html"
+}
 $(document).ready(function () {
     S7Framework.initAuto("#loading_div", $.init);
 });
@@ -85,10 +91,17 @@ function deployValues(values) {
     if (showAlarm) {
         index++;
         larmtext = values[index];
-
+        if (larmtext == 2) {
+            index++;
+            gipsWidth = values[index];
+        }
         if (larmtext == 3) {
             index++;
             dysa = values[index];
+        }
+ 	if (larmtext == 6) {
+            index++;
+            antalbatch = values[index];
         }
     }
 
@@ -102,8 +115,12 @@ function deployValues(values) {
 
     showHideLarmfield(showAlarm);
 
-    // read Values cyclically
-    setTimeout(S7Framework.readData(URL, "init read data", deployValues), 2000);
+    setTimeout(function() { delay(); }, 1000);
+
+    function delay() {
+        // read Values cyclically
+        S7Framework.readData(URL, "init read data", deployValues);
+    }
 }
 function canvas() {
     const c = document.getElementById("myCanvas");
@@ -234,17 +251,16 @@ function loadTable() {
     if (numOfColumns[1] != 0) { header[1].innerHTML = "Nästa order: serie " + nastaSerialNo[0]; }
     else { header[1].innerHTML = "Nästa order"; }
 
-    for (k = 0; k <= 1; k++) {
+    for (let k = 0; k <= 1; k++) {
         tableHeader[k].innerHTML = "";
         tableBody[k].innerHTML = "";
-
 
         if (numOfColumns[k] != 0) {
             //Table Header
             let headerRow = tableHeader[k].insertRow();
 
             if (numOfColumns[k] > 6) {
-                tableHeader[k].innerHTML = "Specialfall, se PLC Hmi och .xml-fil.";
+                tableHeader[k].innerHTML = "Specialfall, se PLC Hmi och .xml-fil: Antal i bredd > 6";
             }
             else {
                 for (let i = 0; i <= numOfColumns[k]; i++) {
@@ -273,12 +289,11 @@ function showHideLarmfield(visning) {
 
     if (visning) {
         element.style.visibility = 'visible';
-
         if (larmtext == 1) {
             element.innerHTML = 'Odefinierat material invalt';
         }
         else if (larmtext == 2) {
-            element.innerHTML = 'Inkommandematerial behöver kapas';
+            element.innerHTML = 'Inkommande material behöver kapas till: ' + gipsWidth + ' mm';
         }
         else if (larmtext == 3) {
             element.innerHTML = 'Förväntad dysa: ' + dysa + ' mm';
@@ -286,9 +301,11 @@ function showHideLarmfield(visning) {
         else if (larmtext == 4) {
             element.innerHTML = 'Omkörningsorder!';
         }
+ 	else if (larmtext == 6) {
+            element.innerHTML = 'Antal Batch Bitar i Listan: ' + antalbatch;
+        }
     }
     else {
         element.style.visibility = 'hidden';
     }
 }
-

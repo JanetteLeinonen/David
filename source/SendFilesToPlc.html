@@ -1,0 +1,30 @@
+<html lang="en">
+
+<head>
+    <title>.nc file upload to PLC</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href=./style.css>
+    <script src="jsLib/jquery1.11.2.min.js"></script>
+    <script src="./SendFilesToPlc.js"></script>
+</head>
+
+<body>
+    <div>
+        <button class="button" onclick="startPage()">Startsida</button>
+        <button class="button" onclick="memoryCard()">Läs filer på Minneskort</button>
+        <form id=myForm method="POST" action="https://192.168.77.120/UserFiles?Action=UPLOAD&E=1" enctype="multipart/form-data">
+            <input class="button" type="file" name="File" accept=".nc" multiple />
+            <input id=Submit class="button" type="submit" value="Skicka" />
+        </form>
+    </div>
+</body>
+<script>
+    function startPage() {
+        location.href = "http://192.168.77.120/awp/index.html"
+    }
+    function memoryCard() {
+        location.href = "http://192.168.77.120/Portal/Portal.mwsl?PriNav=UserFiles"
+    }
+</script>
+
+</html>

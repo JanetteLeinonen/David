@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Language" content="en" >
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title id="title">AFRY</title>
-    <img src="./Images/grayWithDots.png" class="canvasImg" id="GRAY_DOTS" width="50" height="50">
-    <img src="./Images/grayWithStripes.png" class="canvasImg" id="GRAY_STRIPES" width="50" height="50">
-    <img src="./Images/greenWithStripes.png" class="canvasImg" id="GREEN_STRIPES" width="50" height="50">
-    <img src="./Images/blueWithStripes.png" class="canvasImg" id="BLUE_STRIPES" width="50" height="50">
-    <img src="./Images/yellowWithStripes.png" class="canvasImg" id="YELLOW_STRIPES" width="50" height="50">
-    <img src="./Images/pinkWithStripes.png" class="canvasImg" id="PINK_STRIPES" width="50" height="50">
-    <img src="./Images/orangeWithStripes.png" class="canvasImg" id="ORANGE_STRIPES" width="50" height="50">
-    <img src="./Images/orangeWithDots.png" class="canvasImg" id="ORANGE_DOTS" width="50" height="50">
-    <img src="./Images/lightgreenWithDots.png" class="canvasImg" id="LIGHTGREEN_DOTS" width="50" height="50">
-    <img src="./Images/lightgreenWithStripes.png" class="canvasImg" id="LIGHTGREEN_STRIPES" width="50" height="50">
-    <img src="./Images/blueWithDots.png" class="canvasImg" id="BLUE_DOTS" width="50" height="50">
-    <img src="./Images/blackWithStripes.png" class="canvasImg" id="BLACK_STRIPES" width="50" height="50">
-    <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="./jsLib/jquery-3.2.1.min.js" ></script>
-    <script type="text/javascript" src="./jsLib/S7_framework.js" ></script>
-    <script type="text/javascript" src="script.js"></script>
+    <img src="./Images/grayWithDots.png" alt="" class="canvasImg" id="GRAY_DOTS" width="50" height="50">
+    <img src="./Images/grayWithStripes.png" alt="" class="canvasImg" id="GRAY_STRIPES" width="50" height="50">
+    <img src="./Images/greenWithStripes.png" alt="" class="canvasImg" id="GREEN_STRIPES" width="50" height="50">
+    <img src="./Images/blueWithStripes.png" alt="" class="canvasImg" id="BLUE_STRIPES" width="50" height="50">
+    <img src="./Images/yellowWithStripes.png" alt="" class="canvasImg" id="YELLOW_STRIPES" width="50" height="50">
+    <img src="./Images/pinkWithStripes.png" alt="" class="canvasImg" id="PINK_STRIPES" width="50" height="50">
+    <img src="./Images/orangeWithStripes.png" alt="" class="canvasImg" id="ORANGE_STRIPES" width="50" height="50">
+    <img src="./Images/orangeWithDots.png" alt="" class="canvasImg" id="ORANGE_DOTS" width="50" height="50">
+    <img src="./Images/lightgreenWithDots.png" alt="" class="canvasImg" id="LIGHTGREEN_DOTS" width="50" height="50">
+    <img src="./Images/lightgreenWithStripes.png" alt="" class="canvasImg" id="LIGHTGREEN_STRIPES" width="50" height="50">
+    <img src="./Images/blueWithDots.png" alt="" class="canvasImg" id="BLUE_DOTS" width="50" height="50">
+    <img src="./Images/blackWithStripes.png" alt="" class="canvasImg" id="BLACK_STRIPES" width="50" height="50">
+    <link rel="stylesheet" href=./style.css>
+    <script src="./jsLib/jquery-3.2.1.min.js"></script>
+    <script src="./jsLib/S7_framework.js"></script>
+    <script src="./script.js"></script>
 </head>
 <body>
     <div class="headerContainer">
         <img src="./Images/AFRY_Logotype_Horizontal.png" alt="afry_logo" class="logo">
         <div id="header">
             <h1 class="title1">FORMSKÄRNING ISOLERING</h1>
+            <button class="title1" onclick="redirect_to_sendfiles()">Flytta .nc filer till PLC</button> 
         </div>
     </div>
     <div class="contentContainer" id="container">
@@ -52,6 +52,6 @@
         <p id="larmtext">:="Webserver DB".Larm.text:</p>
         <div id="auto-refresh"></div>
     </div>
-
 </body>
+
 </html>
